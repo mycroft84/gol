@@ -184,3 +184,18 @@
 #9 C:\xampp\htdocs\gol\core\system\classes\Request.php(85): Kohana_Request_Client->execute(Object(Request))
 #10 C:\xampp\htdocs\gol\frontend\index.php(121): Request->execute()
 #11 {main} in C:\xampp\htdocs\gol\core\database\classes\Kohana\Database\Query.php:251
+2017-02-01 13:15:35 --- CRITICAL: ErrorException [ 8 ]: Array to string conversion ~ C:\xampp\htdocs\gol\core\database\classes\Kohana\Database.php [ 524 ] in C:\xampp\htdocs\gol\core\database\classes\Kohana\Database.php:524
+2017-02-01 13:15:35 --- DEBUG: #0 C:\xampp\htdocs\gol\core\database\classes\Kohana\Database.php(524): Kohana_Core::error_handler(8, 'Array to string...', 'C:\\xampp\\htdocs...', 524, Array)
+#1 [internal function]: Kohana_Database->quote_column(Array)
+#2 C:\xampp\htdocs\gol\core\database\classes\Kohana\Database\Query\Builder\Select.php(354): array_map(Array, Array)
+#3 C:\xampp\htdocs\gol\core\database\classes\Kohana\Database\Query.php(234): Kohana_Database_Query_Builder_Select->compile(Object(Database_MySQLi))
+#4 C:\xampp\htdocs\gol\frontend\application\classes\Model\Board.php(64): Kohana_Database_Query->execute()
+#5 C:\xampp\htdocs\gol\frontend\modules\api\classes\Controller\Api\Gol.php(23): Model_Board->getBoards()
+#6 [internal function]: Controller_Api_Gol->action_getBoards()
+#7 C:\xampp\htdocs\gol\core\system\classes\Controller.php(25): call_user_func_array(Array, Array)
+#8 [internal function]: Controller->execute()
+#9 C:\xampp\htdocs\gol\core\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Api_Gol))
+#10 C:\xampp\htdocs\gol\core\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#11 C:\xampp\htdocs\gol\core\system\classes\Request.php(85): Kohana_Request_Client->execute(Object(Request))
+#12 C:\xampp\htdocs\gol\frontend\index.php(121): Request->execute()
+#13 {main} in C:\xampp\htdocs\gol\core\database\classes\Kohana\Database.php:524

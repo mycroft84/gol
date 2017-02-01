@@ -17,4 +17,22 @@ class Controller_Api_Gol extends Controller_Restful
             $this->addErrors($e);
         }
     }
+
+    public function action_getBoards()
+    {
+        try{
+            $this->context = Model::factory('Board')->getBoards();
+        } catch (Exception $e) {
+            $this->addErrors($e);
+        }
+    }
+
+    public function action_getLoadBoard()
+    {
+        try{
+            $this->context = Model::factory('Board')->loadBoard($this->_params['board']);
+        } catch (Exception $e) {
+            $this->addErrors($e);
+        }
+    }
 }

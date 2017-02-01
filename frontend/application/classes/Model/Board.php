@@ -54,6 +54,17 @@ class Model_Board extends ORM {
         }
     }
 
+    public function getBoards()
+    {
+        return DB::select(
+                array('bo_id','id'),
+                array('bo_name','name')
+            )
+            ->from($this->table_name())
+            ->execute()->as_array();
+
+    }
+
     public function loadBoard($id)
     {
         try {

@@ -41,6 +41,76 @@
 				"description": ""
 			},
 			"response": []
+		},
+		{
+			"name": "http://127.0.0.1/gol/api/getBoards",
+			"request": {
+				"url": "http://127.0.0.1/gol/api/getBoards",
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Nonce",
+						"value": "AGuda9UpAL",
+						"description": ""
+					},
+					{
+						"key": "X-Created",
+						"value": "1483180624",
+						"description": ""
+					},
+					{
+						"key": "X-Hash",
+						"value": "Y2ZiYjE5YmZiZWY1Y2M2Y2YxODI5OWRiMjZhNjBkMjM2ODZhODJkYw==",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"board\": {\n\t\t\"width\": 10,\n\t\t\"height\": 10\n\t},\n\t\"alives\": [\"5-5\",\"5-6\",\"6-5\",\"6-6\",\"6-7\"]\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1/gol/api/getLoadBoard",
+			"request": {
+				"url": "http://127.0.0.1/gol/api/getLoadBoard?board=2",
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Nonce",
+						"value": "AGuda9UpAL",
+						"description": ""
+					},
+					{
+						"key": "X-Created",
+						"value": "1483180624",
+						"description": ""
+					},
+					{
+						"key": "X-Hash",
+						"value": "Y2ZiYjE5YmZiZWY1Y2M2Y2YxODI5OWRiMjZhNjBkMjM2ODZhODJkYw==",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"board\": {\n\t\t\"width\": 10,\n\t\t\"height\": 10\n\t},\n\t\"alives\": [\"5-5\",\"5-6\",\"6-5\",\"6-6\",\"6-7\"]\n}"
+				},
+				"description": ""
+			},
+			"response": []
 		}
 	]
 }
