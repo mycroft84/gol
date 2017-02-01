@@ -1,0 +1,19 @@
+<?php
+/**
+ * User: MyCroft
+ * Date: {{ now|date('y-m-d') }}
+ * Time: {{ now|date('H:i') }}
+ * Company: d2c
+ */
+
+namespace PHPSTORM_META {
+    $STATIC_METHOD_TYPES = [
+        \Kohana_Model::factory('') => [
+{% for index,block in files %}
+{% for name,path in block %}
+            '{{ name }}' instanceof {{ path }},
+{% endfor %}
+{% endfor %}
+        ],
+    ];
+}

@@ -1,0 +1,1172 @@
+<style type="text/css">
+#kohana_error { background: #ddd; font-size: 1em; font-family:sans-serif; text-align: left; color: #111; }
+#kohana_error h1,
+#kohana_error h2 { margin: 0; padding: 1em; font-size: 1em; font-weight: normal; background: #911; color: #fff; }
+	#kohana_error h1 a,
+	#kohana_error h2 a { color: #fff; }
+#kohana_error h2 { background: #222; }
+#kohana_error h3 { margin: 0; padding: 0.4em 0 0; font-size: 1em; font-weight: normal; }
+#kohana_error p { margin: 0; padding: 0.2em 0; }
+#kohana_error a { color: #1b323b; }
+#kohana_error pre { overflow: auto; white-space: pre-wrap; }
+#kohana_error table { width: 100%; display: block; margin: 0 0 0.4em; padding: 0; border-collapse: collapse; background: #fff; }
+	#kohana_error table td { border: solid 1px #ddd; text-align: left; vertical-align: top; padding: 0.4em; }
+#kohana_error div.content { padding: 0.4em 1em 1em; overflow: hidden; }
+#kohana_error pre.source { margin: 0 0 1em; padding: 0.4em; background: #fff; border: dotted 1px #b7c680; line-height: 1.2em; }
+	#kohana_error pre.source span.line { display: block; }
+	#kohana_error pre.source span.highlight { background: #f0eb96; }
+		#kohana_error pre.source span.line span.number { color: #666; }
+#kohana_error ol.trace { display: block; margin: 0 0 0 2em; padding: 0; list-style: decimal; }
+	#kohana_error ol.trace li { margin: 0; padding: 0; }
+.js .collapsed { display: none; }
+</style>
+<script type="text/javascript">
+document.documentElement.className = document.documentElement.className + ' js';
+function koggle(elem)
+{
+	elem = document.getElementById(elem);
+
+	if (elem.style && elem.style['display'])
+		// Only works with the "style" attr
+		var disp = elem.style['display'];
+	else if (elem.currentStyle)
+		// For MSIE, naturally
+		var disp = elem.currentStyle['display'];
+	else if (window.getComputedStyle)
+		// For most other browsers
+		var disp = document.defaultView.getComputedStyle(elem, null).getPropertyValue('display');
+
+	// Toggle the state of the "display" style
+	elem.style.display = disp == 'block' ? 'none' : 'block';
+	return false;
+}
+</script>
+<div id="kohana_error">
+	<h1><span class="type">ErrorException [ Fatal Error ]:</span> <span class="message">Call to a member function check() on a non-object</span></h1>
+	<div id="error51e415e59b544" class="content">
+		<p><span class="file">MODPATH\minion\classes\Kohana\Minion\Task.php [ 240 ]</span></p>
+		<pre class="source"><code><span class="line"><span class="number">235</span> 
+</span><span class="line"><span class="number">236</span> 		// Validate $options
+</span><span class="line"><span class="number">237</span> 		$validation = Validation::factory($options);
+</span><span class="line"><span class="number">238</span> 		$validation = $this-&gt;build_validation($validation);
+</span><span class="line"><span class="number">239</span> 
+</span><span class="line highlight"><span class="number">240</span> 		if ( $this-&gt;_method != '_help' AND ! $validation-&gt;check())
+</span><span class="line"><span class="number">241</span> 		{
+</span><span class="line"><span class="number">242</span> 			echo View::factory('minion/error/validation')
+</span><span class="line"><span class="number">243</span> 				-&gt;set('task', Minion_Task::convert_class_to_task($this))
+</span><span class="line"><span class="number">244</span> 				-&gt;set('errors', $validation-&gt;errors($this-&gt;get_errors_file()));
+</span><span class="line"><span class="number">245</span> 		}
+</span></code></pre>		<ol class="trace">
+					<li>
+				<p>
+					<span class="file">
+													{PHP internal call}
+											</span>
+					&raquo;
+					Kohana_Core::shutdown_handler()
+				</p>
+											</li>
+							</ol>
+	</div>
+	<h2><a href="#error51e415e59b544environment" onclick="return koggle('error51e415e59b544environment')">Environment</a></h2>
+	<div id="error51e415e59b544environment" class="content collapsed">
+				<h3><a href="#error51e415e59b544environment_included" onclick="return koggle('error51e415e59b544environment_included')">Included files</a> (244)</h3>
+		<div id="error51e415e59b544environment_included" class="collapsed">
+			<table cellspacing="0">
+								<tr>
+					<td><code>MODPATH\minion\minion</code></td>
+				</tr>
+								<tr>
+					<td><code>DOCROOT\index.php</code></td>
+				</tr>
+								<tr>
+					<td><code>APPPATH\bootstrap.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Kohana\Core.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Kohana.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\I18n.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Kohana\I18n.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Kohana\Exception.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Kohana\Kohana\Exception.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Log.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Kohana\Log.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Config.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Kohana\Config.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Log\File.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Kohana\Log\File.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Log\Writer.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Kohana\Log\Writer.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Config\File.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Kohana\Config\File.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Kohana\Config\File\Reader.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Kohana\Config\Reader.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Kohana\Config\Source.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\twig\init.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\twig\vendor\Twig\lib\Twig\Autoloader.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\formbuilder\init.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\jshelper\init.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\jshelper\config\routing.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Route.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Kohana\Route.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\init.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Loader.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\AuthSub.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\HttpClient.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Http\Client.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Uri.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Http\Client\Adapter\Interface.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Http\Response.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Http\Response\Stream.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Version.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\ClientLogin.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\Media.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\App.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\App\Feed.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\App\Entry.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\App\FeedEntryParent.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\App\Extension\Element.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\App\Extension.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\App\Base.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\App\Util.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\App\Extension\Author.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\App\Extension\Person.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\App\Extension\Name.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\App\Extension\Email.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\App\Extension\Uri.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\App\Extension\Category.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\App\Extension\Contributor.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\App\Extension\Id.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\App\Extension\Link.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\Extension.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\App\Extension\Rights.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\App\Extension\Text.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\App\Extension\Title.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\App\Extension\Updated.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\App\Extension\Content.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\App\Extension\Edited.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\App\Extension\Published.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\App\Extension\Source.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\App\FeedSourceParent.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\App\Extension\Generator.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\App\Extension\Icon.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\App\Extension\Logo.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\App\Extension\Subtitle.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\App\Extension\Summary.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\App\Extension\Control.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\App\Extension\Draft.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\App\MediaSource.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Uri\Http.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Validate\Hostname.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Validate\Abstract.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Validate\Interface.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Validate\Ip.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\VideoEntry.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\Extension\Comments.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\Extension\FeedLink.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\Feed.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\Entry.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\App\MediaEntry.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\MediaMimeStream.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\MimeFile.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\MimeBodyString.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\Extension\OpenSearchTotalResults.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\Extension\OpenSearchStartIndex.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\Extension\OpenSearchItemsPerPage.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\MediaEntry.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\Media\Entry.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\Media\Extension\MediaGroup.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\Media\Extension\MediaContent.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\Media\Extension\MediaCategory.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\Media\Extension\MediaCopyright.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\Media\Extension\MediaCredit.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\Media\Extension\MediaDescription.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\Media\Extension\MediaHash.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\Media\Extension\MediaKeywords.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\Media\Extension\MediaPlayer.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\Media\Extension\MediaRating.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\Media\Extension\MediaRestriction.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\Media\Extension\MediaText.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\Media\Extension\MediaThumbnail.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\Media\Extension\MediaTitle.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\MediaGroup.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\MediaContent.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\Duration.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\MediaRating.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\MediaCredit.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\Private.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\VideoId.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\Uploaded.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\NoEmbed.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\Statistics.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\Link.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\Token.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\Racy.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\Extension\Rating.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\Geo\Extension\GeoRssWhere.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\Geo.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\Geo\Extension\GmlPoint.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\Geo\Extension\GmlPos.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\Control.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\State.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\Recorded.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\Location.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\VideoFeed.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\Media\Feed.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\CommentFeed.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\CommentEntry.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\PlaylistListFeed.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\PlaylistListEntry.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\Description.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\PlaylistId.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\CountHint.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\SubscriptionFeed.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\SubscriptionEntry.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\PlaylistTitle.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\Username.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\QueryString.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\ContactFeed.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\ContactEntry.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\UserProfileEntry.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\AboutMe.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\Age.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\Books.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\Company.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\Hobbies.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\Hometown.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\Movies.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\Music.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\Occupation.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\School.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\Gender.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\Relationship.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\FirstName.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\LastName.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\Status.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\PlaylistVideoFeed.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\PlaylistVideoEntry.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\Extension\Position.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\ActivityFeed.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\ActivityEntry.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\InboxFeed.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\zend\vendors\Zend\Gdata\YouTube\InboxEntry.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\statistic\init.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\statistic\config\routing.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\statistic\config\assets.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\assets\classes\assetcollection.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\assets\classes\kohana\assetcollection.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\assets\classes\assetmanager.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\assets\classes\kohana\assetmanager.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Arr.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Kohana\Arr.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\dropbox\init.php</code></td>
+				</tr>
+								<tr>
+					<td><code>APPPATH\config\routing.php</code></td>
+				</tr>
+								<tr>
+					<td><code>APPPATH\config\assets.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\URL.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Kohana\URL.php</code></td>
+				</tr>
+								<tr>
+					<td><code>APPPATH\config\settings.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\orm\classes\ORM.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\orm\classes\Kohana\ORM.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Model.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Kohana\Model.php</code></td>
+				</tr>
+								<tr>
+					<td><code>APPPATH\classes\Model\Settings.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Inflector.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Kohana\Inflector.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\config\inflector.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Config\Group.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Kohana\Config\Group.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\database\classes\Database.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\database\classes\Kohana\Database.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\database\config\database.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\database\classes\Database\MySQL.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\database\classes\Kohana\Database\MySQL.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Profiler.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Kohana\Profiler.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\database\classes\Database\MySQL\Result.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\database\classes\Kohana\Database\MySQL\Result.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\database\classes\Database\Result.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\database\classes\Kohana\Database\Result.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\database\classes\DB.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\database\classes\Kohana\DB.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\database\classes\Database\Query\Builder\Select.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\database\classes\Kohana\Database\Query\Builder\Select.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\database\classes\Database\Query\Builder\Where.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\database\classes\Kohana\Database\Query\Builder\Where.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\database\classes\Database\Query\Builder.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\database\classes\Kohana\Database\Query\Builder.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\database\classes\Database\Query.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\database\classes\Kohana\Database\Query.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\minion\classes\Minion\Task.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\minion\classes\Kohana\Minion\Task.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\minion\classes\Minion\Exception.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\minion\classes\Kohana\Minion\Exception.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\minion\classes\Minion\CLI.php</code></td>
+				</tr>
+								<tr>
+					<td><code>MODPATH\minion\classes\Kohana\Minion\CLI.php</code></td>
+				</tr>
+								<tr>
+					<td><code>APPPATH\classes\Task\Assets\publish.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Validation.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Kohana\Validation.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Debug.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Kohana\Debug.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Date.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Kohana\Date.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\View.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Kohana\View.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Response.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Kohana\Response.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\HTTP\Response.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Kohana\HTTP\Response.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\HTTP\Message.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Kohana\HTTP\Message.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\HTTP\Header.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Kohana\HTTP\Header.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\views\kohana\error.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\HTML.php</code></td>
+				</tr>
+								<tr>
+					<td><code>SYSPATH\classes\Kohana\HTML.php</code></td>
+				</tr>
+							</table>
+		</div>
+				<h3><a href="#error51e415e59b544environment_loaded" onclick="return koggle('error51e415e59b544environment_loaded')">Loaded extensions</a> (48)</h3>
+		<div id="error51e415e59b544environment_loaded" class="collapsed">
+			<table cellspacing="0">
+								<tr>
+					<td><code>Core</code></td>
+				</tr>
+								<tr>
+					<td><code>bcmath</code></td>
+				</tr>
+								<tr>
+					<td><code>calendar</code></td>
+				</tr>
+								<tr>
+					<td><code>ctype</code></td>
+				</tr>
+								<tr>
+					<td><code>date</code></td>
+				</tr>
+								<tr>
+					<td><code>ereg</code></td>
+				</tr>
+								<tr>
+					<td><code>filter</code></td>
+				</tr>
+								<tr>
+					<td><code>ftp</code></td>
+				</tr>
+								<tr>
+					<td><code>hash</code></td>
+				</tr>
+								<tr>
+					<td><code>iconv</code></td>
+				</tr>
+								<tr>
+					<td><code>json</code></td>
+				</tr>
+								<tr>
+					<td><code>mcrypt</code></td>
+				</tr>
+								<tr>
+					<td><code>SPL</code></td>
+				</tr>
+								<tr>
+					<td><code>odbc</code></td>
+				</tr>
+								<tr>
+					<td><code>pcre</code></td>
+				</tr>
+								<tr>
+					<td><code>Reflection</code></td>
+				</tr>
+								<tr>
+					<td><code>session</code></td>
+				</tr>
+								<tr>
+					<td><code>standard</code></td>
+				</tr>
+								<tr>
+					<td><code>mysqlnd</code></td>
+				</tr>
+								<tr>
+					<td><code>tokenizer</code></td>
+				</tr>
+								<tr>
+					<td><code>zip</code></td>
+				</tr>
+								<tr>
+					<td><code>zlib</code></td>
+				</tr>
+								<tr>
+					<td><code>libxml</code></td>
+				</tr>
+								<tr>
+					<td><code>dom</code></td>
+				</tr>
+								<tr>
+					<td><code>PDO</code></td>
+				</tr>
+								<tr>
+					<td><code>bz2</code></td>
+				</tr>
+								<tr>
+					<td><code>SimpleXML</code></td>
+				</tr>
+								<tr>
+					<td><code>wddx</code></td>
+				</tr>
+								<tr>
+					<td><code>xml</code></td>
+				</tr>
+								<tr>
+					<td><code>xmlreader</code></td>
+				</tr>
+								<tr>
+					<td><code>xmlwriter</code></td>
+				</tr>
+								<tr>
+					<td><code>openssl</code></td>
+				</tr>
+								<tr>
+					<td><code>curl</code></td>
+				</tr>
+								<tr>
+					<td><code>mbstring</code></td>
+				</tr>
+								<tr>
+					<td><code>exif</code></td>
+				</tr>
+								<tr>
+					<td><code>gd</code></td>
+				</tr>
+								<tr>
+					<td><code>gettext</code></td>
+				</tr>
+								<tr>
+					<td><code>mysql</code></td>
+				</tr>
+								<tr>
+					<td><code>mysqli</code></td>
+				</tr>
+								<tr>
+					<td><code>Phar</code></td>
+				</tr>
+								<tr>
+					<td><code>pdo_mysql</code></td>
+				</tr>
+								<tr>
+					<td><code>pdo_sqlite</code></td>
+				</tr>
+								<tr>
+					<td><code>soap</code></td>
+				</tr>
+								<tr>
+					<td><code>sockets</code></td>
+				</tr>
+								<tr>
+					<td><code>sqlite3</code></td>
+				</tr>
+								<tr>
+					<td><code>xmlrpc</code></td>
+				</tr>
+								<tr>
+					<td><code>xsl</code></td>
+				</tr>
+								<tr>
+					<td><code>mhash</code></td>
+				</tr>
+							</table>
+		</div>
+																<h3><a href="#error51e415e59b544environment_server" onclick="return koggle('error51e415e59b544environment_server')">$_SERVER</a></h3>
+		<div id="error51e415e59b544environment_server" class="collapsed">
+			<table cellspacing="0">
+								<tr>
+					<td><code>ALLUSERSPROFILE</code></td>
+					<td><pre><small>string</small><span>(14)</span> "C:\ProgramData"</pre></td>
+				</tr>
+								<tr>
+					<td><code>APPDATA</code></td>
+					<td><pre><small>string</small><span>(30)</span> "C:\Users\Tibor\AppData\Roaming"</pre></td>
+				</tr>
+								<tr>
+					<td><code>COMMANDER_DRIVE</code></td>
+					<td><pre><small>string</small><span>(2)</span> "C:"</pre></td>
+				</tr>
+								<tr>
+					<td><code>COMMANDER_EXE</code></td>
+					<td><pre><small>string</small><span>(26)</span> "C:\totalcmd\TOTALCMD64.EXE"</pre></td>
+				</tr>
+								<tr>
+					<td><code>COMMANDER_INI</code></td>
+					<td><pre><small>string</small><span>(49)</span> "C:\Users\Tibor\AppData\Roaming\GHISLER\wincmd.ini"</pre></td>
+				</tr>
+								<tr>
+					<td><code>COMMANDER_PATH</code></td>
+					<td><pre><small>string</small><span>(11)</span> "C:\totalcmd"</pre></td>
+				</tr>
+								<tr>
+					<td><code>CommonProgramFiles</code></td>
+					<td><pre><small>string</small><span>(35)</span> "C:\Program Files (x86)\Common Files"</pre></td>
+				</tr>
+								<tr>
+					<td><code>CommonProgramFiles(x86)</code></td>
+					<td><pre><small>string</small><span>(35)</span> "C:\Program Files (x86)\Common Files"</pre></td>
+				</tr>
+								<tr>
+					<td><code>CommonProgramW6432</code></td>
+					<td><pre><small>string</small><span>(29)</span> "C:\Program Files\Common Files"</pre></td>
+				</tr>
+								<tr>
+					<td><code>COMPUTERNAME</code></td>
+					<td><pre><small>string</small><span>(7)</span> "MYCROFT"</pre></td>
+				</tr>
+								<tr>
+					<td><code>ComSpec</code></td>
+					<td><pre><small>string</small><span>(27)</span> "C:\Windows\system32\cmd.exe"</pre></td>
+				</tr>
+								<tr>
+					<td><code>FP_NO_HOST_CHECK</code></td>
+					<td><pre><small>string</small><span>(2)</span> "NO"</pre></td>
+				</tr>
+								<tr>
+					<td><code>HOMEDRIVE</code></td>
+					<td><pre><small>string</small><span>(2)</span> "C:"</pre></td>
+				</tr>
+								<tr>
+					<td><code>HOMEPATH</code></td>
+					<td><pre><small>string</small><span>(12)</span> "\Users\Tibor"</pre></td>
+				</tr>
+								<tr>
+					<td><code>LOCALAPPDATA</code></td>
+					<td><pre><small>string</small><span>(28)</span> "C:\Users\Tibor\AppData\Local"</pre></td>
+				</tr>
+								<tr>
+					<td><code>LOGONSERVER</code></td>
+					<td><pre><small>string</small><span>(18)</span> "\\MicrosoftAccount"</pre></td>
+				</tr>
+								<tr>
+					<td><code>NUMBER_OF_PROCESSORS</code></td>
+					<td><pre><small>string</small><span>(1)</span> "2"</pre></td>
+				</tr>
+								<tr>
+					<td><code>OS</code></td>
+					<td><pre><small>string</small><span>(10)</span> "Windows_NT"</pre></td>
+				</tr>
+								<tr>
+					<td><code>Path</code></td>
+					<td><pre><small>string</small><span>(146)</span> "C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\TortoiseSVN&nbsp;&hellip;"</pre></td>
+				</tr>
+								<tr>
+					<td><code>PATHEXT</code></td>
+					<td><pre><small>string</small><span>(53)</span> ".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC"</pre></td>
+				</tr>
+								<tr>
+					<td><code>PROCESSOR_ARCHITECTURE</code></td>
+					<td><pre><small>string</small><span>(3)</span> "x86"</pre></td>
+				</tr>
+								<tr>
+					<td><code>PROCESSOR_ARCHITEW6432</code></td>
+					<td><pre><small>string</small><span>(5)</span> "AMD64"</pre></td>
+				</tr>
+								<tr>
+					<td><code>PROCESSOR_IDENTIFIER</code></td>
+					<td><pre><small>string</small><span>(51)</span> "Intel64 Family 6 Model 23 Stepping 10, GenuineIntel"</pre></td>
+				</tr>
+								<tr>
+					<td><code>PROCESSOR_LEVEL</code></td>
+					<td><pre><small>string</small><span>(1)</span> "6"</pre></td>
+				</tr>
+								<tr>
+					<td><code>PROCESSOR_REVISION</code></td>
+					<td><pre><small>string</small><span>(4)</span> "170a"</pre></td>
+				</tr>
+								<tr>
+					<td><code>ProgramData</code></td>
+					<td><pre><small>string</small><span>(14)</span> "C:\ProgramData"</pre></td>
+				</tr>
+								<tr>
+					<td><code>ProgramFiles</code></td>
+					<td><pre><small>string</small><span>(22)</span> "C:\Program Files (x86)"</pre></td>
+				</tr>
+								<tr>
+					<td><code>ProgramFiles(x86)</code></td>
+					<td><pre><small>string</small><span>(22)</span> "C:\Program Files (x86)"</pre></td>
+				</tr>
+								<tr>
+					<td><code>ProgramW6432</code></td>
+					<td><pre><small>string</small><span>(16)</span> "C:\Program Files"</pre></td>
+				</tr>
+								<tr>
+					<td><code>PROMPT</code></td>
+					<td><pre><small>string</small><span>(4)</span> "$P$G"</pre></td>
+				</tr>
+								<tr>
+					<td><code>PSModulePath</code></td>
+					<td><pre><small>string</small><span>(51)</span> "C:\Windows\system32\WindowsPowerShell\v1.0\Modules\"</pre></td>
+				</tr>
+								<tr>
+					<td><code>PUBLIC</code></td>
+					<td><pre><small>string</small><span>(15)</span> "C:\Users\Public"</pre></td>
+				</tr>
+								<tr>
+					<td><code>SESSIONNAME</code></td>
+					<td><pre><small>string</small><span>(7)</span> "Console"</pre></td>
+				</tr>
+								<tr>
+					<td><code>SystemDrive</code></td>
+					<td><pre><small>string</small><span>(2)</span> "C:"</pre></td>
+				</tr>
+								<tr>
+					<td><code>SystemRoot</code></td>
+					<td><pre><small>string</small><span>(10)</span> "C:\Windows"</pre></td>
+				</tr>
+								<tr>
+					<td><code>TEMP</code></td>
+					<td><pre><small>string</small><span>(33)</span> "C:\Users\Tibor\AppData\Local\Temp"</pre></td>
+				</tr>
+								<tr>
+					<td><code>TMP</code></td>
+					<td><pre><small>string</small><span>(33)</span> "C:\Users\Tibor\AppData\Local\Temp"</pre></td>
+				</tr>
+								<tr>
+					<td><code>USERDOMAIN</code></td>
+					<td><pre><small>string</small><span>(7)</span> "MYCROFT"</pre></td>
+				</tr>
+								<tr>
+					<td><code>USERDOMAIN_ROAMINGPROFILE</code></td>
+					<td><pre><small>string</small><span>(7)</span> "MYCROFT"</pre></td>
+				</tr>
+								<tr>
+					<td><code>USERNAME</code></td>
+					<td><pre><small>string</small><span>(5)</span> "Tibor"</pre></td>
+				</tr>
+								<tr>
+					<td><code>USERPROFILE</code></td>
+					<td><pre><small>string</small><span>(14)</span> "C:\Users\Tibor"</pre></td>
+				</tr>
+								<tr>
+					<td><code>windir</code></td>
+					<td><pre><small>string</small><span>(10)</span> "C:\Windows"</pre></td>
+				</tr>
+								<tr>
+					<td><code>PHP_SELF</code></td>
+					<td><pre><small>string</small><span>(6)</span> "minion"</pre></td>
+				</tr>
+								<tr>
+					<td><code>SCRIPT_NAME</code></td>
+					<td><pre><small>string</small><span>(6)</span> "minion"</pre></td>
+				</tr>
+								<tr>
+					<td><code>SCRIPT_FILENAME</code></td>
+					<td><pre><small>string</small><span>(6)</span> "minion"</pre></td>
+				</tr>
+								<tr>
+					<td><code>PATH_TRANSLATED</code></td>
+					<td><pre><small>string</small><span>(6)</span> "minion"</pre></td>
+				</tr>
+								<tr>
+					<td><code>DOCUMENT_ROOT</code></td>
+					<td><pre><small>string</small><span>(0)</span> ""</pre></td>
+				</tr>
+								<tr>
+					<td><code>REQUEST_TIME_FLOAT</code></td>
+					<td><pre><small>float</small> 1373902309.3754</pre></td>
+				</tr>
+								<tr>
+					<td><code>REQUEST_TIME</code></td>
+					<td><pre><small>integer</small> 1373902309</pre></td>
+				</tr>
+								<tr>
+					<td><code>argv</code></td>
+					<td><pre><small>array</small><span>(2)</span> <span>(
+    0 => <small>string</small><span>(6)</span> "minion"
+    1 => <small>string</small><span>(14)</span> "assets:publish"
+)</span></pre></td>
+				</tr>
+								<tr>
+					<td><code>argc</code></td>
+					<td><pre><small>integer</small> 2</pre></td>
+				</tr>
+							</table>
+		</div>
+			</div>
+</div>

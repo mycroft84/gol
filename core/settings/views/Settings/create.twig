@@ -1,0 +1,29 @@
+{% extends "Templates/Layouts/inside.twig" %}
+
+{% block layoutcontent %}
+
+    <div class="page-title">
+        <div class="title-env">
+            <h1 class="title">{% if current_submenu != 'settings_list' %}{{ "breadcrumbSettingsCreate"|i18n }}{% else %}{{ "breadcrumbSettingsUpdate"|i18n }}{% endif %}</h1>
+            <p class="description"></p>
+        </div>
+        <div class="breadcrumb-env">
+            <ol class="breadcrumb bc-1">
+                <li>
+                    <a href="{{ ROOT }}"><i class="fa-home"></i>Főoldal</a>
+                </li>
+                <li>
+                    {{ ('menu' ~ 'menu.settings.top'|config|capitalize)|i18n }}
+                </li>
+                <li class="active">
+                    <strong>{% if current_submenu != 'settings_list' %}{{ "breadcrumbSettingsCreate"|i18n }}{% else %}{{ "breadcrumbSettingsUpdate"|i18n }}{% endif %}</strong>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    {% form.open url('settingsAjax',{actiontarget: 'settings', maintarget: 'save'}),{'method':'post','id':'settings-Form'} %}
+    {{ forms.build(form) }}
+    </form>
+
+{% endblock %}

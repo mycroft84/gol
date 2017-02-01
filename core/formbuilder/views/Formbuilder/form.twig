@@ -1,0 +1,530 @@
+{% macro build(data) %}
+    {% import _self as forms %}
+    {{ forms.buildLangForm(data) }}
+    {{ forms.addTemplates(data) }}
+{% endmacro %}
+
+{% macro buildLangForm(data) %}
+    {% import _self as forms %}
+    {% if data.hasTab|default(false) %}
+        <div class="form-wizard{% if data.hideTabHeader %} hideTabHeader{% endif %}">
+            <ul class="tabs">
+                {% if data.hasLang|default(false) %}
+                    {{ forms.tabHeaderLangs(data.langs,data.hasTranslateField) }}
+                {% else %}
+                    {{ forms.tabHeaderCustom(data) }}
+                {% endif %}
+            </ul>
+
+            <div class="progress-indicator">
+                <span></span>
+            </div>
+
+            <div class="tab-content no-margin">
+                {% if data.hasLang|default(false) %}
+                    {{ forms.tabBodyLangs(data) }}
+                {% else %}
+                    {{ forms.tabBodyCustom(data) }}
+                {% endif %}
+            </div>
+
+            <ul class="pager wizard">
+                <li class="previous first">
+                    <a href="#" class="btn btn-white" type="button">
+                        <i class="fa-angle-double-left"></i>
+                        <span>{{ 'formbuilder.first'|i18n }}</span>
+                    </a>
+                </li>
+                <li class="previous">
+                    <a href="#" class="btn btn-white" type="button">
+                        <i class="fa-angle-left"></i>
+                        <span>{{ 'formbuilder.prev'|i18n }}</span>
+                    </a>
+                </li>
+                {% if data.orm_loaded == false %}
+                <li class="next finishAndNew">
+                    <a href="#" class="btn btn-purple" type="button">
+                        <i class="fa-check-circle"></i>
+                        <span>{{ 'formbuilder.saveAndNew'|i18n }}</span>
+                    </a>
+                </li>
+                {% endif %}
+                <li class="next finish">
+                    <a href="#" class="btn btn-purple" type="button">
+                        <i class="fa-check"></i>
+                        <span>{{ 'formbuilder.save'|i18n }}</span>
+                    </a>
+                </li>
+                <li class="next last">
+                    <a href="#" class="btn btn-white" type="button">
+                        <span>{{ 'formbuilder.last'|i18n }}</span>
+                        <i class="fa-angle-double-right"></i>
+                    </a>
+                </li>
+                <li class="next">
+                    <a href="#" class="btn btn-white" type="button">
+                        <span>{{ 'formbuilder.next'|i18n }}</span>
+                        <i class="fa-angle-right"></i>
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+    {% endif %}
+{% endmacro %}
+
+{% macro tabHeaderLangs(langs,hasTranslateField) %}
+    {% for index,item in langs %}
+		{% if loop.first or hasTranslateField %}
+        <li {% if loop.first %} class="active"{% endif %}><a href="#tabs-{{ item }}" data-toggle="tab">{% if loop.first %}{{ 'formBaseData'|i18n }} - {% endif %}{{ item|i18n }}</a></li>
+		{% endif %}
+    {% endfor %}
+{% endmacro %}
+
+{% macro tabHeaderCustom(data) %}
+    {% for index,item in data.tabs %}
+        <li {% if loop.first %} class="active"{% endif %}><a href="#tabs-{{ index }}" data-toggle="tab">{% if index == 'base' %}{{ 'formBaseData'|i18n }}{% else %}{{ item|i18n }}{% endif %}</a></li>
+    {% endfor %}
+{% endmacro %}
+
+{% macro tabBodyLangs(data,useTab = true) %}
+    {% import _self as forms %}
+    {% for index,item in data.langs %}
+		{% if loop.first or data.hasTranslateField %}
+        {% if useTab %}
+            <div class="tab-pane with-bg{% if loop.first %} active{% endif %}{% if data.sections|length != 0 %} hasSection{% endif %}" id="tabs-{{ item }}">
+        {% else %}
+           <div class="panel panel-default panel-border subform-item">
+               <div class="panel-heading">
+                   <div class="panel-options">
+                       <i class="loader-icon">
+                           <span class="fa fa-spin fa-refresh"></span>
+                       </i>
+                       <a href="#" class="delSubformItem" data-toggle="tooltip" title="{{ 'formbuilder.delete'|i18n }}">
+                           <i class="fa fa-trash"></i>
+                       </a>
+                   </div>
+               </div>
+               <div class="panel-body">
+           {% endif %}
+            {{ forms.rows(data,item,loop.first,item) }}
+
+            {{ forms.addFileList(index,data) }}
+            {{ forms.addSubforms(index,data) }}
+            {% if useTab == false %}</div>{% endif %}
+
+        </div>
+		{% endif %}
+
+    {% endfor %}
+{% endmacro %}
+
+{% macro tabBodyCustom(data,useTab = true) %}
+    {% import _self as forms %}
+    {% for index,item in data.tabs %}
+        {% if useTab %}
+            <div class="tab-pane with-bg{% if loop.first %} active{% endif %}{% if data.sections|length != 0 %} hasSection{% endif %}" id="tabs-{{ index }}">
+        {% else %}
+                <div class="panel panel-default panel-border subform-item">
+                    <div class="panel-heading">
+                        <div class="panel-options">
+                            <i class="loader-icon">
+                                <span class="fa fa-spin fa-refresh"></span>
+                            </i>
+                            <a href="#" class="delSubformItem" data-toggle="tooltip" title="{{ 'formbuilder.delete'|i18n }}">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+        {% endif %}
+            {{ forms.rows(data,index,loop.first,index,useTab) }}
+
+            {% if useTab == false %}{{ forms.addFileList(index,data) }}{% endif %}
+            {{ forms.addSubforms(index,data) }}
+            {% if useTab == false %}</div>{% endif %}
+        </div>
+    {% endfor %}
+{% endmacro %}
+
+{% macro addFileList(index,data) %}
+    {% import _self as forms %}
+
+    {% if index == 0 %}
+        {% if data.getFiles().hasFile %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="fileuploaded-container">
+                    <h4>{{ 'formbuilder.uploadedFiles'|i18n }}</h4>
+                    <table class="sortable ordered table table-small-font table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>{{ 'formbuilder.preview'|i18n }}</th>
+                                <th>{{ 'formbuilder.filename'|i18n }}</th>
+                                <th>{{ 'formbuilder.filedesc'|i18n }}</th>
+                                <th>{{ 'formbuilder.filemime'|i18n }}</th>
+                                <th>{{ 'formbuilder.filesize'|i18n }}</th>
+                                <th>{{ 'formbuilder.filetags'|i18n }}</th>
+                                <th>{{ 'formbuilder.fileactions'|i18n }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for block in data.getFiles().getAll() %}
+                                {% for item in block %}
+                                <tr data-id="{{ item.fi_id }}">
+                                    <td>
+                                         {% if 'image' in item.fi_type  %}
+                                            <i class="fa fa-arrows-v" style="padding-right: 10px"></i>
+                                            <img src="{{ getUserfile(item.fi_url) }}" style='max-width: 75px;max-height: 75px'>
+                                        {% else %}
+                                            <i class="fa fa-arrows-v" style="padding-right: 10px; margin-top: 10px;float: left;"></i>
+                                            <i class="fa fa-file-o" style='font-size: 27px'></i>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <input type='text' class="form-control" data-name="fi_name" value='{{ item.fi_name }}'>
+                                        </div>
+                                    </td>
+                                    <td>
+                                         <div class="form-group">
+                                            <input type='text' class="form-control" data-name="fi_desc" value="{{ item.fi_desc }}">
+                                        </div>
+                                    </td>
+                                    <td>{{ item.fi_type }}</td>
+                                    <td>{{ item.filesize }}</td>
+                                    <td>
+                                        <div class="form-group">
+                                            <select class="form-control fileTypes" multiple>
+                                                {{ forms.setFileType(data,item) }}
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="{{ data.root }}download/files/{{ item.fi_id }}" class="btn btn-icon btn-success btn-sm" data-toggle="tooltip" title="{{ 'formbuilder.download'|i18n }}"><i class="fa-download"></i></a>
+                                        {% if data.fileUpload.enableDel %}<button class="btn btn-icon btn-red btn-sm filedel" data-toggle="tooltip" title="{{ 'formbuilder.delete'|i18n }}"><i class="fa-trash"></i></button>{% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    {% endif %}
+
+{% endmacro %}
+
+{% macro addTemplates(data) %}
+{% import _self as forms %}
+{% raw %}
+    <script type="text/twig" id="file-template">
+         <tr>
+            <td>
+                <input type='hidden' name='upload_files[{{ input }}]{{ prefix }}' value='{{ data }}'>
+                <input type='hidden' name='upload_filesize[{{ input }}]{{ prefix }}' value='{{ file.size }}'>
+                <input type='hidden' name='upload_mime[{{ input }}]{{ prefix }}' value='{{ file.type }}'>
+                <input type='hidden' name='upload_original_name[{{ input }}]{{ prefix }}' value='{{ file.name }}'>
+
+                {% if 'image' in file.type %}
+                    <i class="fa fa-arrows-v" style="padding-right: 10px"></i>
+                    <img src="{{ data }}" class="{{ rotateClass }}" style='max-width: 75px;max-height: 75px;'>
+                {% else %}
+                    <i class="fa fa-arrows-v" style="padding-right: 10px; margin-top: 10px;float: left;"></i>
+                    <i class="fa fa-file-o" style='font-size: 27px'></i>
+                {% endif %}
+            </td>
+            <td>
+                <div class="form-group">
+                    <input type='text' class="form-control" name='upload_filename[{{ input }}]{{ prefix }}' value='{{ file.name }}'>
+                </div>
+            </td>
+            <td>
+                 <div class="form-group">
+                    <input type='text' class="form-control" name='upload_filedetails[{{ input }}]{{ prefix }}'>
+                </div>
+            </td>
+            <td>{{ file.type }}</td>
+            <td>{{ file.size }}</td>
+            <td>
+                <div class="form-group">
+                    <select class="form-control" name='upload_filetypes[{{ input }}]{{ prefix }}[]' multiple>
+    {% endraw %}
+                        {{ forms.setFileType(data,item) }}
+    {% raw %}
+                    </select>
+                </div>
+            </td>
+            <td>
+                <button class="btn btn-icon btn-red btn-sm fileuploaddel" data-toggle="tooltip" title="{{ 'formbuilder.delete'|i18n }}"><i class="fa-trash"></i></button>
+            </td>
+        </tr>
+    </script>
+
+    <script type="text/twig" id="file-loading-template">
+        <tr>
+            <td class='file-loading' colspan="7">
+                <a class='progress-abort btn btn-icon btn-red btn-xs'>
+                    <i class='fa-times'></i>
+                </a>
+
+                <div class='progress-contaniner'>
+                    <div class="progress progress-striped active">
+                        <div style="width: 0%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="0" role="progressbar" class="progress-bar progress-bar-success">
+                            <span class="sr-only"></span>
+                        </div>
+                    </div>
+                    <div class='progress-bar-value'></div>
+                    <div class='progress-bar-percent'></div>
+                </div>
+            </td>
+        </tr>
+    </script>
+
+    {% endraw %}
+{% endmacro %}
+
+{% macro addSubforms(index,data) %}
+    {% import _self as forms %}
+    {% for subform in data.subforms %}
+        {%  if index == subform.tab %}
+        <div class="panel panel-color panel-purple">
+
+            <div class="panel-heading">
+                <h3 class="panel-title">{{ subform.title }}</h3>
+                <div class="panel-options">
+                    <a href="#" class="addSubformItem" data-relation="{{ subform.relation }}" data-toggle="tooltip" title="{{ "formbuilder.additem"|i18n }}">
+                        <i class="fa fa-plus"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="panel-body subform-container-{{ subform.relation }} subform-container">
+                {% for form in subform.form %}
+                    {% if form.hasLang|default(false) %}
+                        {{ forms.tabBodyLangs(form,false) }}
+                    {% else %}
+                        {{ forms.tabBodyCustom(form,false) }}
+                    {% endif %}
+                {% endfor %}
+                {% if subform.formTemplate.hasLang|default(false) %}
+                    {{ forms.tabBodyLangs(subform.formTemplate,false) }}
+                {% else %}
+                    {{ forms.tabBodyCustom(subform.formTemplate,false) }}
+                {% endif %}
+            </div>
+
+            <script type="text/twig" id="subform-{{ subform.relation|default(random()) }}-template">
+                {% if subform.formTemplate.hasLang|default(false) %}
+                    {{ forms.tabBodyLangs(subform.formTemplate,false) }}
+                {% else %}
+                    {{ forms.tabBodyCustom(subform.formTemplate,false) }}
+                {% endif %}
+            </script>
+        </div>
+        {% endif %}
+    {% endfor %}
+{% endmacro %}
+
+{% macro getFilesRow(item,data) %}
+    {% import _self as forms %}
+
+    <div class="row" data-id="{{ item.fi_id }}">
+        <div class="col-md-12">
+            <div class="col-md-3">
+                <p>{{ item.fi_name }} [<em>{{ item.fi_type }} / {{ item.filesize }}</em>]</p>
+            </div>
+            <div class="col-md-3">
+                {{ forms.setFileType(data,item) }}
+            </div>
+            <div class="col-md-3">
+                <a href="{{ data.root }}download/files/{{ item.fi_id }}" class="btn btn-icon btn-success btn-sm" data-toggle="tooltip" title="{{ 'formbuilder.download'|i18n }}"><i class="fa-download"></i></a>
+				{% if data.fileUpload.enableDel %}<button class="btn btn-icon btn-red btn-sm filedel" data-toggle="tooltip" title="{{ 'formbuilder.delete'|i18n }}"><i class="fa-trash"></i></button>{% endif %}
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro setFileType(data,item) %}
+    {% set currentType = item.getTypesAsArray() %}
+    {% for type in data.getFiles().filesTypes %}
+    <option value="{{ type.ft_id }}"{% if type.ft_id in currentType %} selected="selected"{% endif %}>{{ type.ft_name }}</option>
+    {% endfor %}
+{% endmacro %}
+
+{% macro rows(data, lang = false, is_first, tab, useTab) %}
+    {% import _self as forms %}
+
+    {% if data.sections|length == 0 %}
+        {{ forms.addFieldsWithoutSection(data, lang, is_first,tab) }}
+    {% else %}
+        {{ forms.addFieldsWithSection(data, lang, is_first,tab) }}
+    {% endif %}
+
+    {% for item in data.elements.getHiddenElements() %}
+        {{ forms.getElement(item, lang) }}
+    {% endfor %}
+
+{% endmacro %}
+
+{% macro addFieldsWithoutSection(data, lang = false, step, tab) %}
+    {% import _self as forms %}
+
+    {% for block in data.elements.getRenderedElements('left',lang)|chunk(2) %}
+        <div class="row">
+            {% for item in block %}
+                {% if item.options.render == true %}
+                    <div class="col-md-6">
+                        {{ forms.getFormGroup(item,lang) }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+    {% for item in data.elements.getRenderedElements('right',lang) %}
+        {% if item.options.render == true %}
+            <div class="row">
+                <div class="col-md-12">
+                    {{ forms.getFormGroup(item,lang) }}
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+
+{% endmacro %}
+
+{% macro addFieldsWithSection(data, lang = false, step, tab, useTab = true) %}
+    {% import _self as forms %}
+
+    {% for index,item in data.sections[tab] if data.sections[tab] is defined %}
+        {% if useTab %}
+            <div class="panel panel-color panel-info">
+            {% if item.title %}
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ item.title }}{% if item.helper %} <small>{{ item.helper }}</small>{% endif %}</h3>
+                    <div class="panel-options">
+                        <i class="loader-icon">
+                            <span class="fa fa-spin fa-refresh"></span>
+                        </i>
+                    </div>
+                </div>
+            {% endif %}
+                <div class="panel-body">
+                    {% for row in data.getElementsForTab(tab,index,lang) %}
+                        <div class="row">
+                            {% for field in row %}
+                                {% if field.options.render == true %}
+                                    <div class="col-md-{{ 12 // row|length }}">
+                                        {{ forms.getFormGroup(field,lang) }}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% else %}
+            {% for row in data.getElementsForTab(tab,index,lang) %}
+                <div class="row">
+                    {% for field in row %}
+                        {% if field.options.render == true %}
+                            <div class="col-md-{{ 12 // row|length }}">
+                                {{ forms.getFormGroup(field,lang) }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+{% endmacro %}
+
+{% macro getFormGroup(item,lang) %}
+    {% import _self as forms %}
+    <div class="form-group">
+        {% if item.options.type != 'hidden' %}
+            {{ forms.getLabel(item, lang) }}
+        {% endif %}
+        {{ forms.getElement(item, lang) }}
+        {{ forms.getError(item, lang) }}
+    </div>
+{% endmacro %}
+
+{% macro getLabel(item, lang) %}
+    <label class="control-label" for="{{ item.name|replace({ '[]': '' }) }}{% if lang %}_{{ lang }}{% endif %}">{% if item.options.label %}{{ item.options.label }}{% else %}{{ item.name|replace({ '[]': '' })|i18n }}{% endif %}{% if item.options.required %}<strong class="required-item"> *</strong>{% endif %}{% if item.options.addNew %}<a href="{{ item.options.newUrl }}"><i class="fa fa-plus-square"></i> Új {{ "formbuilder.additem"|i18n }}a</a>{% endif %}</label>
+{% endmacro %}}
+
+{% macro getError(item, lang) %}
+    <span id="{{ item.name|replace({ '[]': '' }) }}{% if lang %}_{{ lang }}{% endif %}-error" class="validate-has-error" style="display: none;"></span>
+{% endmacro %}}
+
+{% macro getElement(element, lang, direction = 'left') %}
+    {% import _self as forms %}
+    {% if element.type == 'input' %}
+        {{ forms.getInput(element, lang, direction) }}
+    {% elseif element.type == 'select' %}
+        {{ forms.getSelect(element, lang, direction) }}
+    {% elseif element.type == 'textarea' %}
+        {{ forms.getTextarea(element, lang, direction) }}
+    {% elseif element.type == 'captcha' %}
+        {{ forms.getCaptcha(element, lang, direction) }}
+    {% else %}
+        <span class="textarea">{% autoescape false %}{{ element.options.value }}{% endautoescape %}</span>
+    {% endif %}
+{% endmacro %}}
+
+{% macro getElementAttr(element,lang) %}
+  {% if element.options.date == 1 %} data-widget="datepicker" {% endif %}data-input-title='{% if element.options.label %}{{ element.options.label }}{% else %}{{ element.name|replace({ '[]': '' })|i18n }}{% endif %}'{% if element.options.helper %} data-inputhelper='{{ (element.name|replace({ '[]': '' }) ~ '_helper')|i18n }}'{% endif %} id="{{ element.name|replace({ '[]': '' }) }}{% if lang %}_{{ lang }}{% endif %}" name="{{ element.name }}{% if lang and element.options.translate == true %}_lang_{{ lang }}{% endif %}{% if element.options.isArray|default(false) %}[]{% endif %}"{% if element.options|length %}{% for index,item in element.options %}{% if index not in ['value', 'position', 'options','date','translate','render','required','helper','tab','message','label','isArray','class','chooseTitle','addNew','newUrl','optionDatas'] %} {{ index }}='{{ item }}'{% endif %}{% endfor %}{% endif %}{% if element.options.message != false %}{% endif %} class="form-control{% if  element.options.class is defined %} {{  element.options.class }}{% endif %}"
+{% endmacro %}
+
+{% macro getCaptcha(element, lang, direction) %}
+    {% import _self as forms %}
+    <div class="captcha">
+    {% autoescape false %}{{ element.options.value }}{% endautoescape %}
+    <input {{ forms.getElementAttr(element,lang) }}>
+    </div>
+{% endmacro %}
+
+{% macro getTextarea(element, lang, direction) %}
+    {% import _self as forms %}
+    <textarea {{ forms.getElementAttr(element,lang) }}>{% if element.options.translate == false %}{{ element.options.value }}{% else %}{{ element.options.value[lang] }}{% endif %}</textarea>
+{% endmacro %}
+
+{% macro getSelect(element, lang, direction) %}
+    {% import _self as forms %}
+        <select {{ forms.getElementAttr(element, lang) }}>
+            {% if element.options.multiple|default(false) == false %}<option value="-1"{% if element.options.value == -1 %} selected="selected"{% endif %}>{% if element.options.chooseTitle %}{{ element.options.chooseTitle }}{% else %}{{ 'choosePlease'|i18n }}{% endif %}</option>{% endif %}
+            {% for item in element.options.options %}
+                <option value="{{ item.value }}"{% if item.value == element.options.value or (element.options.value is iterable and item.value in element.options.value) %} selected='selected'{% endif %}{% if item.data %}{% for dIndex,dData in item.data %}data-{{ dIndex }}="{{ dData }}" {% endfor %}{% endif %}>{{ item.name }}</option>
+            {% endfor %}
+        </select>
+{% endmacro %}
+
+{% macro getInput(element, lang, direction) %}
+    {% import _self as forms %}
+        <input {{ forms.getElementAttr(element, lang) }}{% if element.options.type is null %} type="text"{% endif %}{% if element.options.type != 'checkbox' %} value="{% if lang and element.options.translate == true %}{{ element.options.value[lang] }}{% else %}{{ element.options.value }}{% endif %}"{% elseif element.options.value %} checked="checked"{% endif %}/>
+        {% if element.options.type == 'file' %}
+        <div class="fileupload-container" style="display: none;">
+            <h4>{{ 'formbuilder.addedFiles'|i18n }}</h4>
+            <table class="sortable table table-small-font table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>{{ 'formbuilder.preview'|i18n }}</th>
+                        <th>{{ 'formbuilder.filename'|i18n }}</th>
+                        <th>{{ 'formbuilder.filedesc'|i18n }}</th>
+                        <th>{{ 'formbuilder.filemime'|i18n }}</th>
+                        <th>{{ 'formbuilder.filesize'|i18n }}</th>
+                        <th>{{ 'formbuilder.filetags'|i18n }}</th>
+                        <th>{{ 'formbuilder.fileactions'|i18n }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+{% endmacro %}

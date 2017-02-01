@@ -1,0 +1,19 @@
+{% macro ads(id,ads) %}
+    {% if ads[id].enabled %}
+        {% include template_from_string(ads[id].code) with {file: ads[id].file} %}
+    {% endif %}
+{% endmacro %}
+
+{% macro adsORM(ads) %}
+    {% for item in ads %}
+        {% if item.ads_enabled %}
+            {% include template_from_string(item.ads_code) with {file: getUserfile(item.files.getPics()[0].fi_url)} %}
+        {% endif %}
+    {% endfor %}
+{% endmacro %}
+
+{% macro banner(banner) %}
+    {% for item in banner %}
+        {% include template_from_string(item.ba_code) with {file: getUserfile(item.files.getAll()[0].fi_url) } %}
+    {% endfor %}
+{% endmacro %}

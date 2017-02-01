@@ -1,0 +1,18 @@
+function jsI18n() {
+    this.data = new Object();
+
+    this.set = function(name,value) {
+        this.data[name] = value;
+    }
+
+    this.get = function(name) {
+        var value = (typeof(this.data[name]) != 'undefined') ? this.data[name] : name;
+        return value;
+    }
+
+}
+
+var jsI18n = new jsI18n();
+{% for index,item in langs %}
+jsI18n.set("{{ index }}","{% autoescape false %}{{ item|str_replace('"','\\"') }}{% endautoescape %}");
+{% endfor %}

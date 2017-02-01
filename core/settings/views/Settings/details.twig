@@ -1,0 +1,27 @@
+{% extends "Templates/Layouts/inside.twig" %}
+
+{% block layoutcontent %}
+
+    <div class="page-title">
+        <div class="title-env">
+            <h1 class="title">{{ "breadcrumbSettingsDetails"|i18n }}</h1>
+            <p class="description"></p>
+        </div>
+        <div class="breadcrumb-env">
+            <ol class="breadcrumb bc-1">
+                <li>
+                    <a href="{{ ROOT }}"><i class="fa-home"></i>Főoldal</a>
+                </li>
+                <li>
+                    {{ ('menu' ~ 'menu.settings.top'|config|capitalize)|i18n }}
+                </li>
+                <li class="active">
+                    <strong>{{ "breadcrumbSettingsDetails"|i18n }}</strong>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    {{ detailsHelper.build(details,url('settingsUpdate',{slug: slug}))  }}
+
+{% endblock %}

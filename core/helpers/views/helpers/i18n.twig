@@ -1,0 +1,13 @@
+<?php
+/**
+ * User: MyCroft
+ * Date: {{ now|date('y-m-d') }}
+ * Time: {{ now|date('H:i') }}
+ * Company: d2c
+ */
+
+return array(
+{% for index,item in subtitles %}
+    "{{ index }}"=>"{% autoescape false %}{% if target[index] is not defined %}{{ item|str_replace('"','\\"') }}{% else %}{{ target[index]|str_replace('"','\\"') }}{% endif %}{% endautoescape %}",
+{% endfor %}
+);

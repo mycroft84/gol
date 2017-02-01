@@ -1,0 +1,38 @@
+function jsRouter() {
+
+    this.data = {};
+
+    this.set = function(type,name,value) {
+        if (!this.data.hasOwnProperty(type)) this.data[type] = {};
+
+        this.data[type][name] = value;
+    }
+
+    this.get = function(name, params) {
+        var method = (typeof params != 'undefined' && params.hasOwnProperty('method')) ? params['method'] : 'any';
+
+        if (typeof(this.data[method][name]) != 'undefined') {
+            var parts = [];
+            $.each(this.data[method][name],function(index,value){
+                if (value.search("<") != -1) {
+                    var currentParam = value.replace("<","").replace(">","");
+                    if (params && params.hasOwnProperty(currentParam)) {
+                        parts.push(params[currentParam]);
+                    }
+                } else {
+                    parts.push(value);
+                }
+            });
+
+            return parts.join("/");
+
+        } else return false;
+    }
+}
+
+var jsRouter = new jsRouter();
+{% for type,route in routings %}
+{% for index,item in route %}
+jsRouter.set('{{ type }}','{{ index }}',{% autoescape false %}{{ item|json_encode }}{% endautoescape %});
+{% endfor %}
+{% endfor %}

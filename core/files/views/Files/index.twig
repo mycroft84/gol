@@ -1,0 +1,36 @@
+{% extends "Templates/Layouts/inside.twig" %}
+
+{% block layoutcontent %}
+    <h2>Fájlok listázása</h2>
+    <table class="selectprofil details">
+        <tr>
+            {% for item in columns %}
+            {% if item.column_name not in ['fi_table','fi_ref_id','fi_user','fi_order','fi_input_name'] %}
+            <th>{{ item.column_name|i18n }}</th>
+            {% endif %}
+            {% endfor %}
+            <th>Műveletek</th>
+        </tr>
+        {% for item in files %}
+            <tr>
+                <td>{{ item.fi_id }}</td>
+                <td>{{ item.fi_name }}</td>
+                <td>{{ item.fi_url }}</td>
+                <td>{{ item.fi_type }}</td>
+                <td>{% html.getFileSize item.fi_size %}</td>
+                <td>{{ item.fi_datetime|date('Y-m-d') }}</td>
+                <td>
+                    <p class="buttoncont">
+                        <a class="button" href="{{ url('fileDownload',{id: item.fi_id}) }}">Letöltés</a>
+                    </p>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Jelenleg nincs feltöltött fájl!</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+
+{% endblock %}

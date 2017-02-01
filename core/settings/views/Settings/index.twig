@@ -1,0 +1,10 @@
+{% embed "Modules/index.twig" with {'page_title': 'breadcrumbSettingsList'|i18n ,'topmenu':  ('menu' ~ 'menu.settings.top'|config|capitalize)|i18n } %}
+    
+    {% block filters %}
+        {{ gridHelper.getFilters(grid) }}
+    {% endblock %}
+
+    {% block datatable %}
+        {{ gridHelper.getDatatable(grid) }}
+    {% endblock %}
+{% endembed %}

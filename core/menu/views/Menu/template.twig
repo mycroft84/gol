@@ -1,0 +1,43 @@
+{% macro getMenu(menuitem,currentmenu,currentsubmenu) %}
+    {% import _self as menu %}
+    {% for item in menuitem %}
+    <li{% if currentmenu == item.name %} class="active opened"{% endif %}>
+        {{ menu.createMenuLevel(item,currentmenu,currentsubmenu) }}
+    </li>
+    {% endfor %}
+{% endmacro %}
+
+{% macro createMenuLevel(item,currentmenu,currentsubmenu) %}
+    {% import _self as menu %}
+
+    <a href="{% if item.url %}{{ item.url }}{% else %}#{% endif %}">
+        <i class="{% if item.topicon %}{{ item.topicon }}{% else %}{{ item.icon }}{% endif %}"></i>
+        <span class="title">{{ menu.getName(item) }}</span>
+    </a>
+    {% if item.sub or item.links %}<ul>{% endif %}
+    {% if item.sub %}
+        {% for sub in item.sub %}
+            <li{% if sub.name in currentsubmenu %} class="active opened"{% endif %}>
+                {{ menu.createMenuLevel(sub,currentmenu,currentsubmenu) }}
+            </li>
+        {% endfor %}
+    {% endif %}
+    {% for link in item.links %}
+        {% set name = (link.subName) ? link.subName : link.topName %}
+        <li {% if currentsubmenu == (name ~ '_' ~ link.name) %} class="active"{% endif %}>
+            {{ menu.createMenuLevel(link,currentmenu,currentsubmenu) }}
+        </li>
+    {% endfor %}
+    {% if item.sub or item.links %}</ul>{% endif %}
+
+{% endmacro %}
+
+{% macro getName(item) %}
+    {% spaceless %}
+        {% if item.url %}
+            {{ ('menu' ~ ((item.subName) ? item.subName : item.topName)|capitalize ~ item.name|capitalize)|i18n }}
+        {% else %}
+            {{ ('menu' ~ item.name|capitalize)|i18n }}
+        {% endif %}
+    {% endspaceless %}
+{% endmacro %}

@@ -1,0 +1,57 @@
+{% import _self as helper %}
+
+{% if max > 1 %}
+<div class="pager-cont">
+    <img src="{{ getImage('separator.png') }}" />
+    <div class="itemPerPage{% if options.bottom %} bottom{% endif %}">
+        <div class="fright">
+            <span style="float: right;margin-left: 10px; line-height: 45px; display: inline-block">találat/oldal</span>
+            <select class="perpageitem" data-url="{{ url }}">
+                <option value="10"{% if options.perpage == 10 %} selected{% endif %}>10</option>
+                <option value="20"{% if options.perpage == 20 %} selected{% endif %}>20</option>
+                <option value="50"{% if options.perpage == 50 %} selected{% endif %}>50</option>
+            </select>
+        </div>
+        {% if options.bottom and max > 1 %}
+        <div class="pager">
+            {% if current > 1 %}<a href="{{ url }}/{{ options.perpage }}/{{ current - 1 }}{{ helper.getParametes(options.getParams) }}" title="Előző" class="prev"><img src="{{ getImage('pager_prev.png') }}"/></a>{% endif %}
+            {% for item in numbers.min..numbers.max  %}
+                {% if item == current %}
+                <span>{{ item }}</span>
+                {% else %}
+                <a href="{{ url }}{% if item != 1 %}/{{ options.perpage }}/{{ item }}{% endif %}{{ helper.getParametes(options.getParams) }}">{{ item }}</a>
+                {% endif %}
+            {% endfor %}
+            {% if current < max %}<a href="{{ url }}/{{ options.perpage }}/{{ current + 1 }}{{ helper.getParametes(options.getParams) }}" title="Következő" class="next"><img src="{{ getImage('pager_next.png') }}"/></a>{% endif %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+
+{% macro getParametes(params) %}
+{% if params %}
+{% for index,item in params %}
+{% if loop.first %}?{% else %}&{% endif %}{{ index }}={{ item }}
+{% endfor %}
+{% endif %}
+{% endmacro %}
+
+{#<div class="itemPerPage">
+    <div class="pager">
+        <a href="http://zalanka.hu/turautvonalak/10/2" title="Következő" class="prev">Előző</a>
+        <a href="http://zalanka.hu/turautvonalak/10/2">1</a>
+        <a href="http://zalanka.hu/turautvonalak/10/2">2</a>
+        <span>3</span>
+        <a href="http://zalanka.hu/turautvonalak/10/2">2</a>
+        <a href="http://zalanka.hu/turautvonalak/10/2" title="Következő" class="next">Következő</a>
+    </div>
+
+    <div class="otherWidth fleft" style="width: 70px; margin-right: 5px">
+        <select class="perpageitem" data-url="http://zalanka.hu/turautvonalak" style="display: none;">
+            <option value="10" selected="">10</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+        </select>
+    </div>
+</div>#}

@@ -1,0 +1,18 @@
+function jsSettings() {
+    this.data = new Object();
+
+    this.set = function(name,value) {
+        this.data[name] = value;
+    }
+
+    this.get = function(name) {
+        var value = (typeof(this.data[name]) != 'undefined') ? this.data[name] : name;
+        return value;
+    }
+
+}
+
+var jsSettings = new jsSettings();
+{% for item in settings %}
+jsSettings.set("{{ item.set_name }}","{{ item.set_value|str_replace(['"','\n'],['\\"','']) }}");
+{% endfor %}

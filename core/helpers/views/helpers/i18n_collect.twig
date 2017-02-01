@@ -1,0 +1,13 @@
+<?php
+/**
+ * User: MyCroft
+ * Date: {{ now|date('y-m-d') }}
+ * Time: {{ now|date('H:i') }}
+ * Company: d2c
+ */
+
+return array(
+{% for item in subtitles %}
+    "{{ item }}"=>{% if loaded[item] is defined %}"{{ loaded[item] }}"{% else %}""{% endif %},
+{% endfor %}
+);

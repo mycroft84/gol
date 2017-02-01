@@ -1,0 +1,19 @@
+table {
+    border-spacing: 0;
+    margin-top: 20px;
+}
+
+table td {
+    border: 1px solid #000000;
+    width: 10px;
+    height: 10px;
+}
+
+table td.active {
+    background: #000000;
+}
+
+table.edit td {
+    cursor: pointer;
+}
+

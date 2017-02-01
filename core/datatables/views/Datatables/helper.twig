@@ -1,0 +1,48 @@
+{% macro build(data) %}
+{% import _self as datatable %}
+
+    {{ datatable.createDatatables(data) }}
+
+{% endmacro %}
+
+{% macro createDatatables(data) %}
+{% import _self as datatable %}
+
+    <table id="{{ data.target }}">
+       {{ datatable.createDatatablesHeaderFooter(data,'header') }}
+       {{ datatable.createDatatablesBody(data) }}
+       {{ datatable.createDatatablesHeaderFooter(data,'footer') }}
+    </table>
+{% endmacro %}
+
+{% macro createDatatablesHeaderFooter(data,type) %}
+    {% if type == 'header' %}<thead>{% else %}<tfoot>{% endif %}
+        <tr>
+            {% for item in data.columns %}
+                <th>{{ item|i18n }}</th>
+            {% endfor %}
+        </tr>
+    {% if type == 'header' %}</thead>{% else %}</tfoot>{% endif %}
+{% endmacro %}
+
+{% macro createDatatablesBody(data) %}
+    <tbody>
+        {% if data.renderMode == 'dom' %}
+            {% for item in data.records %}
+            <tr>
+                {% for col in data.columns %}
+                    <td>{{ item[col] }}</td>
+                {% endfor %}
+            </tr>
+            {% else %}
+                <tr>
+                    <td colspan="{{ data.columns|length }}" class="dataTables_empty">No data</td>
+                </tr>
+            {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="{{ data.columns|length }}" class="dataTables_empty">Loading data from server</td>
+                </tr>
+            {% endif %}
+    </tbody>
+{% endmacro %}

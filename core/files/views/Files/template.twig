@@ -1,0 +1,5 @@
+{% raw %}
+<script id="filesTemplate" type="text/twig">
+    <li id="{{ fi_id }}"><a href="{{ROOT}}download/files/{{ fi_id }}" class="{{ fi_type|split('/')[0] }}">{{ fi_name }}</a> [ <em>{{ fi_type }} / {{ fi_filesize }} / {{ fi_datetime }} / {{ fi_user }}</em> ] <button class='delFile'>Törlés</button></li>
+</script>
+{% endraw %}
