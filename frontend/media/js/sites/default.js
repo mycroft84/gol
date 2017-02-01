@@ -24,10 +24,14 @@ $(document).ready(function() {
             this.loadButton = $("#loadButton");
             this.resetButton = $("#resetButton");
             this.saveButton = $("#saveButton");
+            this.uploadButton = $("#uploadButton");
             this.patterns = $("#patterns");
 
             this.saveModal = $("#saveModal");
             this.saveForm = $("#save-Form");
+
+            this.uploadModal = $("#uploadModal");
+            this.uploadForm = $("#upload-Form");
         },
         this.addEvent = function() {
             this.stepOne.on('click',this.getNextStep);
@@ -37,8 +41,10 @@ $(document).ready(function() {
             this.resetButton.on('click',this.resetButtonClick);
             this.saveButton.on('click',this.saveButtonClick);
             this.loadButton.on('click',this.loadButtonClick);
+            this.uploadButton.on('click',this.uploadButtonClick);
 
             this.saveForm.on('submit',this.saveFormSubmit);
+            this.uploadForm.on('submit',this.uploadFormSubmit);
             this.patterns.on('change',this.patternsChange);
         },
         this.getNextStep = function() {
@@ -151,6 +157,7 @@ $(document).ready(function() {
                             var option = "<option value='"+data.id+"'>"+data.name+"</option>";
                             _self.patterns.append(option);
                         }
+                        _self.saveModal.modal('hide');
                     }
                 }
             });
@@ -189,6 +196,33 @@ $(document).ready(function() {
                 height: data.board.height,
                 lives: data.alives
             }));
+            _self.board.data('width',data.board.width);
+            _self.board.data('height',data.board.height);
+        },
+        this.uploadButtonClick = function () {
+            _self.uploadModal.modal();
+        },
+        this.uploadFormSubmit = function () {
+            
+            $(this).ajaxSubmit({
+                type: 'post',
+                dataType: 'json',
+                success: function (data) {
+                    if (data.error == false) {
+                        var option = _self.patterns.find('option[value="'+data.id+'"]');
+                        if (option.length) {
+                            option.text(data.name);
+                        } else {
+                            var option = "<option value='"+data.id+"'>"+data.name+"</option>";
+                            _self.patterns.append(option);
+                        }
+
+                        _self.uploadModal.modal('hide');
+                    }
+                }
+            })
+            
+            return false;   
         }
     }
 

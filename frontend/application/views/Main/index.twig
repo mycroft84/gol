@@ -34,9 +34,10 @@
                         {% endfor %}
                     </select>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-4">
                     <button type="button" id="loadButton" class="btn btn-success">Load</button>
                     <button type="button" id="saveButton" class="btn btn-success">Save</button>
+                    <button type="button" id="uploadButton" class="btn btn-success">Upload</button>
                 </div>
             </div>
         </div>
@@ -82,6 +83,35 @@
                     <div class="form-group">
                         <label for="width">Név *</label>
                         <input type="text" class="form-control" name="name" id="width" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Mégsem</button>
+                    <button type="submit" class="btn btn-primary">Mentés</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            {% form.open url('mainAjax',{actiontarget: 'gol',maintarget: 'upload'}),{id: 'upload-Form',enctype: 'multipart/form-data'} %}
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Alakzat feltöltése</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="width">Név *</label>
+                        <input type="text" class="form-control" name="name" id="width" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="width">Lif fájl (1.05) *</label>
+                        <input type="file" class="form-control" name="file" id="width" required>
                     </div>
                 </div>
                 <div class="modal-footer">

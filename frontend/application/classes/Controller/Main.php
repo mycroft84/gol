@@ -42,6 +42,11 @@ class Controller_Main extends Controller_DefaultTemplate
                         $data = ORM::factory('Board')->loadBoard(Input::post('id'));
                         echo json_encode($data);
                         break;
+
+                    case 'upload':
+                        $data = ORM::factory('Board')->uploadBoard(Input::post_all());
+                        echo json_encode($data);
+                        break;
                 }
                 break;
 

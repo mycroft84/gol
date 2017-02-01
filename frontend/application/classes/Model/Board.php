@@ -102,4 +102,24 @@ class Model_Board extends ORM {
 
         return $query;
     }
+
+    public function uploadBoard($post)
+    {
+        try{
+            $data = Gol_Parser::factory($post['file']['tmp_name'])->getData();
+
+            $board = ORM::factory('Board');
+            $board->bo_name = $post['name'];
+            $board->bo_width = $data['board']['width'];
+            $board->bo_height = $data['board']['height'];
+            $board->save();
+
+            $board->addPoints($data['alives']);
+
+            return array('error' => false, 'id' => $board->pk(), 'name' => $board->bo_name);
+        } catch (Exception $e) {
+            return array('error' => true, 'message' => $e->getMessage());
+        }
+    }
+
 }

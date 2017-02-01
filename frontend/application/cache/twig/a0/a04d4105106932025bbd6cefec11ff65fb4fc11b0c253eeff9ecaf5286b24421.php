@@ -111,16 +111,17 @@ class __TwigTemplate_fcab3df76f8a5ef6a712c954a19b08ee80558979381390d1165205a3734
             // line 35
             echo "                    </select>
                 </div>
-                <div class=\"col-md-2\">
+                <div class=\"col-md-4\">
                     <button type=\"button\" id=\"loadButton\" class=\"btn btn-success\">Load</button>
                     <button type=\"button\" id=\"saveButton\" class=\"btn btn-success\">Save</button>
+                    <button type=\"button\" id=\"uploadButton\" class=\"btn btn-success\">Upload</button>
                 </div>
             </div>
         </div>
 
     ";
         } else {
-            // line 45
+            // line 46
             echo "        <div class=\"row\">
             <div class=\"col-md-3\">
                 <h1>Add meg a tábla méretei</h1>
@@ -147,12 +148,12 @@ class __TwigTemplate_fcab3df76f8a5ef6a712c954a19b08ee80558979381390d1165205a3734
         </div>
     ";
         }
-        // line 70
+        // line 71
         echo "
     <div class=\"modal fade\" id=\"saveModal\" tabindex=\"-1\" role=\"dialog\">
         <div class=\"modal-dialog\" role=\"document\">
             ";
-        echo Form::open(Twigextension::url("mainAjax", array("actiontarget" => "gol", "maintarget" => "save"))        ,array("id" => "save-Form")        );        // line 74
+        echo Form::open(Twigextension::url("mainAjax", array("actiontarget" => "gol", "maintarget" => "save"))        ,array("id" => "save-Form")        );        // line 75
         echo "            <div class=\"modal-content\">
                 <div class=\"modal-header\">
                     <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">
@@ -175,8 +176,38 @@ class __TwigTemplate_fcab3df76f8a5ef6a712c954a19b08ee80558979381390d1165205a3734
         </div>
     </div>
 
+    <div class=\"modal fade\" id=\"uploadModal\" tabindex=\"-1\" role=\"dialog\">
+        <div class=\"modal-dialog\" role=\"document\">
+            ";
+        echo Form::open(Twigextension::url("mainAjax", array("actiontarget" => "gol", "maintarget" => "upload"))        ,array("id" => "upload-Form", "enctype" => "multipart/form-data")        );        // line 100
+        echo "            <div class=\"modal-content\">
+                <div class=\"modal-header\">
+                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">
+                        <span aria-hidden=\"true\">&times;</span>
+                    </button>
+                    <h4 class=\"modal-title\">Alakzat feltöltése</h4>
+                </div>
+                <div class=\"modal-body\">
+                    <div class=\"form-group\">
+                        <label for=\"width\">Név *</label>
+                        <input type=\"text\" class=\"form-control\" name=\"name\" id=\"width\" required>
+                    </div>
+                    <div class=\"form-group\">
+                        <label for=\"width\">Lif fájl (1.05) *</label>
+                        <input type=\"file\" class=\"form-control\" name=\"file\" id=\"width\" required>
+                    </div>
+                </div>
+                <div class=\"modal-footer\">
+                    <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Mégsem</button>
+                    <button type=\"submit\" class=\"btn btn-primary\">Mentés</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+
     ";
-        // line 106
+        // line 136
         echo "
     <script id=\"td-template\" type=\"text/twig\">
         {% for i in 1..width %}
@@ -205,7 +236,7 @@ class __TwigTemplate_fcab3df76f8a5ef6a712c954a19b08ee80558979381390d1165205a3734
 
     public function getDebugInfo()
     {
-        return array (  180 => 106,  156 => 74,  151 => 70,  124 => 45,  112 => 35,  101 => 33,  97 => 32,  79 => 16,  72 => 14,  57 => 12,  53 => 11,  50 => 10,  46 => 9,  40 => 8,  36 => 6,  34 => 5,  31 => 4,  28 => 3,  11 => 1,);
+        return array (  211 => 136,  183 => 100,  157 => 75,  152 => 71,  125 => 46,  112 => 35,  101 => 33,  97 => 32,  79 => 16,  72 => 14,  57 => 12,  53 => 11,  50 => 10,  46 => 9,  40 => 8,  36 => 6,  34 => 5,  31 => 4,  28 => 3,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -254,9 +285,10 @@ class __TwigTemplate_fcab3df76f8a5ef6a712c954a19b08ee80558979381390d1165205a3734
                         {% endfor %}
                     </select>
                 </div>
-                <div class=\"col-md-2\">
+                <div class=\"col-md-4\">
                     <button type=\"button\" id=\"loadButton\" class=\"btn btn-success\">Load</button>
                     <button type=\"button\" id=\"saveButton\" class=\"btn btn-success\">Save</button>
+                    <button type=\"button\" id=\"uploadButton\" class=\"btn btn-success\">Upload</button>
                 </div>
             </div>
         </div>
@@ -302,6 +334,35 @@ class __TwigTemplate_fcab3df76f8a5ef6a712c954a19b08ee80558979381390d1165205a3734
                     <div class=\"form-group\">
                         <label for=\"width\">Név *</label>
                         <input type=\"text\" class=\"form-control\" name=\"name\" id=\"width\" required>
+                    </div>
+                </div>
+                <div class=\"modal-footer\">
+                    <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Mégsem</button>
+                    <button type=\"submit\" class=\"btn btn-primary\">Mentés</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+
+    <div class=\"modal fade\" id=\"uploadModal\" tabindex=\"-1\" role=\"dialog\">
+        <div class=\"modal-dialog\" role=\"document\">
+            {% form.open url('mainAjax',{actiontarget: 'gol',maintarget: 'upload'}),{id: 'upload-Form',enctype: 'multipart/form-data'} %}
+            <div class=\"modal-content\">
+                <div class=\"modal-header\">
+                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">
+                        <span aria-hidden=\"true\">&times;</span>
+                    </button>
+                    <h4 class=\"modal-title\">Alakzat feltöltése</h4>
+                </div>
+                <div class=\"modal-body\">
+                    <div class=\"form-group\">
+                        <label for=\"width\">Név *</label>
+                        <input type=\"text\" class=\"form-control\" name=\"name\" id=\"width\" required>
+                    </div>
+                    <div class=\"form-group\">
+                        <label for=\"width\">Lif fájl (1.05) *</label>
+                        <input type=\"file\" class=\"form-control\" name=\"file\" id=\"width\" required>
                     </div>
                 </div>
                 <div class=\"modal-footer\">

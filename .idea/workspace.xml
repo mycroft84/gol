@@ -2,10 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="404f2974-7c6c-40a2-a51b-db52af1dc69e" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontend/modules/gol/classes/Gol/Parser.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontend/modules/gol/classes/Kohana/Gol/Parser.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/application/cache/twig/a0/a04d4105106932025bbd6cefec11ff65fb4fc11b0c253eeff9ecaf5286b24421.php" afterPath="$PROJECT_DIR$/frontend/application/cache/twig/a0/a04d4105106932025bbd6cefec11ff65fb4fc11b0c253eeff9ecaf5286b24421.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/application/classes/Controller/Main.php" afterPath="$PROJECT_DIR$/frontend/application/classes/Controller/Main.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/application/classes/Model/Board.php" afterPath="$PROJECT_DIR$/frontend/application/classes/Model/Board.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/application/logs/2017/02/01.php" afterPath="$PROJECT_DIR$/frontend/application/logs/2017/02/01.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/modules/api/classes/Controller/Api/Gol.php" afterPath="$PROJECT_DIR$/frontend/modules/api/classes/Controller/Api/Gol.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/modules/api/config/routing.php" afterPath="$PROJECT_DIR$/frontend/modules/api/config/routing.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/application/views/Main/index.twig" afterPath="$PROJECT_DIR$/frontend/application/views/Main/index.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/media/js/sites/default.js" afterPath="$PROJECT_DIR$/frontend/media/js/sites/default.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,10 +28,11 @@
       <file leaf-file-name="index.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/application/views/Main/index.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="656">
-              <caret line="97" column="28" lean-forward="false" selection-start-line="97" selection-start-column="23" selection-end-line="97" selection-end-column="28" />
+            <state relative-caret-position="146">
+              <caret line="98" column="132" lean-forward="false" selection-start-line="98" selection-start-column="132" selection-end-line="98" selection-end-column="132" />
               <folding>
-                <element signature="e#3343#3350#0#HTML" expanded="true" />
+                <element signature="e#3443#3450#0#HTML" expanded="true" />
+                <element signature="e#4675#4682#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -35,8 +41,8 @@
       <file leaf-file-name="Main.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/application/classes/Controller/Main.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="571">
-              <caret line="36" column="59" lean-forward="false" selection-start-line="36" selection-start-column="59" selection-end-line="36" selection-end-column="59" />
+            <state relative-caret-position="741">
+              <caret line="46" column="60" lean-forward="true" selection-start-line="46" selection-start-column="60" selection-end-line="46" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -45,8 +51,18 @@
       <file leaf-file-name="Board.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/application/classes/Model/Board.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="366">
-              <caret line="61" column="12" lean-forward="false" selection-start-line="61" selection-start-column="12" selection-end-line="61" selection-end-column="12" />
+            <state relative-caret-position="514">
+              <caret line="112" column="47" lean-forward="true" selection-start-line="112" selection-start-column="47" selection-end-line="112" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Parser.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/frontend/modules/gol/classes/Kohana/Gol/Parser.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="548">
+              <caret line="137" column="59" lean-forward="false" selection-start-line="137" selection-start-column="59" selection-end-line="137" selection-end-column="59" />
               <folding />
             </state>
           </provider>
@@ -62,27 +78,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="default.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/media/css/default.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="19" lean-forward="false" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="default.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="default.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/frontend/media/js/sites/default.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="716">
-              <caret line="189" column="34" lean-forward="true" selection-start-line="189" selection-start-column="34" selection-end-line="189" selection-end-column="34" />
+            <state relative-caret-position="387">
+              <caret line="159" column="34" lean-forward="false" selection-start-line="159" selection-start-column="34" selection-end-line="159" selection-end-column="34" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Gol.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Gol.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/modules/api/classes/Controller/Api/Gol.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="544">
@@ -148,13 +154,15 @@
         <option value="$PROJECT_DIR$/frontend/application/views/Templates/default.twig" />
         <option value="$PROJECT_DIR$/frontend/media/css/default.css" />
         <option value="$PROJECT_DIR$/frontend/application/classes/Model/Board/Alives.php" />
-        <option value="$PROJECT_DIR$/frontend/application/classes/Controller/Main.php" />
-        <option value="$PROJECT_DIR$/frontend/application/views/Main/index.twig" />
         <option value="$PROJECT_DIR$/frontend/application/config/assets.php" />
-        <option value="$PROJECT_DIR$/frontend/media/js/sites/default.js" />
-        <option value="$PROJECT_DIR$/frontend/application/classes/Model/Board.php" />
         <option value="$PROJECT_DIR$/frontend/modules/api/config/routing.php" />
         <option value="$PROJECT_DIR$/frontend/modules/api/classes/Controller/Api/Gol.php" />
+        <option value="$PROJECT_DIR$/frontend/application/views/Main/index.twig" />
+        <option value="$PROJECT_DIR$/frontend/application/classes/Controller/Main.php" />
+        <option value="$PROJECT_DIR$/frontend/modules/gol/classes/Gol/Parser.php" />
+        <option value="$PROJECT_DIR$/frontend/modules/gol/classes/Kohana/Gol/Parser.php" />
+        <option value="$PROJECT_DIR$/frontend/application/classes/Model/Board.php" />
+        <option value="$PROJECT_DIR$/frontend/media/js/sites/default.js" />
       </list>
     </option>
   </component>
@@ -729,9 +737,11 @@
     <property name="js.eslint.eslintPackage" value="" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\gol\frontend\modules\gol\classes\Gol" />
       <recent name="C:\xampp\htdocs\gol\frontend\application\classes\Model\Board" />
       <recent name="C:\xampp\htdocs\gol\frontend\application\classes\Model" />
       <recent name="C:\xampp\htdocs\gol\frontend\modules\gol\classes" />
@@ -814,12 +824,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1485935212288</updated>
-      <workItem from="1485935213793" duration="16212000" />
+      <workItem from="1485935213793" duration="23663000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16212000" />
+    <option name="totallyTimeSpent" value="23663000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -827,7 +837,7 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12040134" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1079,32 +1089,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/application/views/Main/index.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="656">
-          <caret line="97" column="28" lean-forward="false" selection-start-line="97" selection-start-column="23" selection-end-line="97" selection-end-column="28" />
-          <folding>
-            <element signature="e#3343#3350#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/media/js/sites/default.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="716">
-          <caret line="189" column="34" lean-forward="true" selection-start-line="189" selection-start-column="34" selection-end-line="189" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/application/classes/Controller/Main.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="571">
-          <caret line="36" column="59" lean-forward="false" selection-start-line="36" selection-start-column="59" selection-end-line="36" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/application/classes/Model/Board/Alives.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -1121,18 +1105,61 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/application/classes/Model/Board.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="61" column="12" lean-forward="false" selection-start-line="61" selection-start-column="12" selection-end-line="61" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/modules/api/classes/Controller/Api/Gol.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
           <caret line="32" column="85" lean-forward="false" selection-start-line="32" selection-start-column="85" selection-end-line="32" selection-end-column="85" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/application/views/Main/index.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="98" column="132" lean-forward="false" selection-start-line="98" selection-start-column="132" selection-end-line="98" selection-end-column="132" />
+          <folding>
+            <element signature="e#3443#3450#0#HTML" expanded="true" />
+            <element signature="e#4675#4682#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/modules/gol/classes/Gol/Parser.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="25" lean-forward="false" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/application/classes/Controller/Main.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="741">
+          <caret line="46" column="60" lean-forward="true" selection-start-line="46" selection-start-column="60" selection-end-line="46" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/modules/gol/classes/Kohana/Gol/Parser.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="548">
+          <caret line="137" column="59" lean-forward="false" selection-start-line="137" selection-start-column="59" selection-end-line="137" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/application/classes/Model/Board.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="514">
+          <caret line="112" column="47" lean-forward="true" selection-start-line="112" selection-start-column="47" selection-end-line="112" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/media/js/sites/default.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="159" column="34" lean-forward="false" selection-start-line="159" selection-start-column="34" selection-end-line="159" selection-end-column="34" />
           <folding />
         </state>
       </provider>
